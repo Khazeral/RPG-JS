@@ -1,0 +1,24 @@
+
+*{
+    padding:0;
+    margin: 0;
+}
+
+.buttonWp {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height : 100vh;
+}
+
+.buttonWp button {
+    padding: 8px;
+    border-radius: 10%;
+    font-size : large;
+}
+
+.buttonWp p {
+    margin-bottom: 2vh;
+    font-size: xx-large;
+}
