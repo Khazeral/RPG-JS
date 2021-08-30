@@ -21,7 +21,7 @@ class Monk extends Character {
     this.currentMana -= 25;
   };
 
-  specialPower = () => {
+  getPowerName = () => {
     return "Healing";
   };
 }

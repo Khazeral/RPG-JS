@@ -1,6 +1,6 @@
 class Game {
-  constructor(turnsLeft = 1, players = new Array()) {
-    this.turnsLeft = turnsLeft;
+  constructor(turnsNumber = 10, players = new Array()) {
+    this.turnsNumber = turnsNumber;
     this.players = players;
   }
 
@@ -14,21 +14,17 @@ class Game {
   };
 
   newTurn = () => {
-    this.turnsLeft--;
+    this.turnsNumber--;
   };
 
   isOver = () => {
-    return (this.players.length > 1 && this.turnsLeft >= 0);
+    console.log(this.players.length > 1 && this.turnsNumber >= 0);
+    return (this.players.length > 1 && this.turnsNumber >= 0);
   };
 
-   updatePlayers= () => {
-    let playersAlive = new Array();
-    this.players.forEach((player) => {
-      if (player.status === "playing") {
-        playersAlive.push(player);
-      }
-    });
-    this.players = playersAlive;
+  updatePlayers = () => {
+    this.players = this.players.filter( (player) => player.status === "playing" );
+    console.log(this.players);
   };
 
   showEveryoneStats = () => {
@@ -43,20 +39,20 @@ class Game {
 
   showMenu = (player) => {
     console.log("1 : Attack");
-    console.log(`2 : Use ${player.specialPower()}`);
+    console.log(`2 : Use ${player.getPowerName()}`);
     console.log("3 : Watch players stats");
     let choice = prompt("Select an action with a number");
     let authoriseAction = false;
     while (!authoriseAction) {
       switch (choice) {
         case "1":
-          console.log("Who's the personn you want to attack ? ");
+          console.log("Who's the person you want to attack ? ");
           player.dealDamage(this.chooseEnemy(player));
           authoriseAction = true;
           break;
         case "2":
           authoriseAction = true;
-          console.log(`You use your special attack : ${player.specialPower()}`);
+          console.log(`You use your special attack : ${player.getPowerName()}`);
           if (
             player instanceof Fighter ||
             player instanceof Assassin ||
@@ -66,20 +62,19 @@ class Game {
             player.power();
             const victim = this.chooseEnemy(player);
             console.log(
-              `${player.name} use ${player.specialPower()} on ${victim.name}`
+              `${player.name} use ${player.getPowerName()} on ${victim.name}`
             );
             victim.takeDamage(player, player.dmg);
             break;
           } else {
-            console.log(`${player.name} use ${player.specialPower()}`);
+            console.log(`${player.name} use ${player.getPowerName()}`);
             player.power();
           }
-
-          break;
+          break
         case "3":
           this.showEveryoneStats();
           console.log("1 : Attack");
-          console.log(`2 : Use ${player.specialPower()}`);
+          console.log(`2 : Use ${player.getPowerName()}`);
           console.log("3 : Watch players stats");
           choice = prompt("Select an action ( with 1, 2 or 3 )");
           break;
@@ -90,8 +85,8 @@ class Game {
     }
   };
 
-  endGame = () => {
-    this.whoIsAlive();
+  finishGame = () => {
+    this.updatePlayers();
     this.players.map((p) => (p.status = "winner"));
     console.log("-----------Winner(s)-----------");
     this.players.map((p) => {
@@ -103,19 +98,19 @@ class Game {
   chooseEnemy = (player) => {
     const enemies = this.players.filter((e) => e !== player);
     let indexEnemy = 1;
-    enemies.forEach((enemy) => {
+    enemies.forEach( (enemy) => {
       console.log(`${indexEnemy} ) ${enemy.showStats()}`);
       enemy.index = indexEnemy;
       indexEnemy++;
     });
 
-    const attackWho = prompt("Enter the number of your choice");
+    const selectedEnemy = prompt("Enter the number of your choice");
     let start = false;
 
     while (!start) {
       for (let i = 0; i < enemies.length; i++) {
         const enemyChoosen = enemies[i];
-        if (enemyChoosen.index == attackWho) {
+        if (enemyChoosen.index === selectedEnemy) {
           start = true;
           return enemyChoosen;
         }
@@ -123,7 +118,7 @@ class Game {
     }
 
     if (!start) {
-      attackWho = prompt("This answer is not possible, try again");
+      selectedEnemy = prompt("This answer is not possible, try again");
     }
   };
 }

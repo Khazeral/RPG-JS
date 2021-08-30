@@ -40,12 +40,12 @@ class Character {
     if (this.currentHp <= 0) {
       this.currentHp = 0;
       console.log(`${this.name} is dead !`);
-      enemy.isKiller();
+      enemy.applyKillerBonus();
       this.status = "loser";
     }
   };
 
-  isKiller = () => {
+  applyKillerBonus = () => {
     console.log(`${this.name} won 20 mana !`);
     if (this.currentMana + 20 < this.maxMana) {
       this.currentMana += 20;

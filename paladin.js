@@ -28,7 +28,7 @@ class Paladin extends Character {
     this.healingLightning = true;
   };
 
-  specialPower = () => {
+  getPowerName = () => {
     return "Healing Lightning";
   };
 }

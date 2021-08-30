@@ -12,7 +12,7 @@ const gameStart = () => {
   const playersList = shufflePlayers(game.players);
   console.log("Welcome to the war !");
   console.log("-----------------------------------------");
-  while (!game.isOver()) {
+  while (game.isOver()) {
     console.log(`Turn n°${game.turnsLeft}`);
     console.log("-----------------------------------------");
     playersList.forEach((player) => {
@@ -29,7 +29,9 @@ const gameStart = () => {
     });
 
     console.log(`--------------------------------------------`);
-    playersList = playersList.forEach((player) => {
+
+
+    playersList.forEach((player) => {
       if (player.status == "playing") {
         player.disablePower();
       }
@@ -37,7 +39,7 @@ const gameStart = () => {
 
     game.newTurn();
   }
-  game.endGame();
+  game.finishGame();
 };
 
 document.getElementById("startButton").addEventListener("click", gameStart);

@@ -29,7 +29,7 @@ class Assassin extends Character {
     this.shield += 1000;
   };
 
-  specialPower = () => {
+  getPowerName = () => {
     return "Shadow Hit";
   };
 }

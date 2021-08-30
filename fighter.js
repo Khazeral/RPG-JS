@@ -32,7 +32,7 @@ class Fighter extends Character {
     this.darkVision = true;
   };
 
-  specialPower = () => {
+  getPowerName = () => {
     return "Dark Vision";
   };
 }

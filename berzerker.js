@@ -15,7 +15,7 @@ class Berzerker extends Character {
         this.dmg += 1;
     }
 
-    specialPower = () => {
+    getPowerName = () => {
         return "Rage";
     }
 
