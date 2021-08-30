@@ -8,8 +8,6 @@ class Berzerker extends Character {
         this.rage = rage;
     }
 
-    powerOff = () => {};
-
     power = () => {
         this.currentHp -= 1;
         this.dmg += 1;

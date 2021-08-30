@@ -6,13 +6,12 @@ class Fighter extends Character {
     mana = 40,
     shield = 0,
     status = "playing",
-    darkVision = false
+    darkVision = false,
   ) {
     super(name, hp, dmg, mana, shield, status);
     this.darkVision = darkVision;
   }
 
-  powerOn = () => {};
 
   disablePower = () => {
     if (this.darkVision) {

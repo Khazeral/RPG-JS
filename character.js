@@ -16,6 +16,7 @@ class Character {
     this.maxMana = mana;
     this.shield = shield;
     this.status = status;
+    this.index = index;
   }
 
   dealDamage = (enemy) => {
@@ -53,4 +54,6 @@ class Character {
       this.currentMana = this.maxMana;
     }
   };
+
+  
 }

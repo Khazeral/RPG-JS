@@ -12,10 +12,8 @@ class Monk extends Character {
     this.healing = healing;
   }
 
-  disablePower = () => {};
-
   power = () => {
-    if (this.currentHp + 8 > this.maxHp) {
+    if (this.currentHp + 8 <= this.maxHp) {
       this.currentHp += 8;
     }
     this.currentMana -= 25;
@@ -24,4 +22,5 @@ class Monk extends Character {
   getPowerName = () => {
     return "Healing";
   };
+
 }

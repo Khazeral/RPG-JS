@@ -13,7 +13,7 @@ const gameStart = () => {
   console.log("Welcome to the war !");
   console.log("-----------------------------------------");
   while (game.isOver()) {
-    console.log(`Turn n°${game.turnsLeft}`);
+    console.log(`Turn n°${game.turnsNumber}`);
     console.log("-----------------------------------------");
     playersList.forEach((player) => {
       console.log(`It's the turn of ${player.name}`);

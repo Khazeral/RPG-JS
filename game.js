@@ -1,5 +1,5 @@
 class Game {
-  constructor(turnsNumber = 10, players = new Array()) {
+  constructor(turnsNumber = 1, players = new Array()) {
     this.turnsNumber = turnsNumber;
     this.players = players;
   }
@@ -14,17 +14,15 @@ class Game {
   };
 
   newTurn = () => {
-    this.turnsNumber--;
+    this.turnsNumber++;
   };
 
   isOver = () => {
-    console.log(this.players.length > 1 && this.turnsNumber >= 0);
-    return (this.players.length > 1 && this.turnsNumber >= 0);
+    return (this.players.length > 1 && this.turnsNumber <= 10);
   };
 
   updatePlayers = () => {
     this.players = this.players.filter( (player) => player.status === "playing" );
-    console.log(this.players);
   };
 
   showEveryoneStats = () => {
@@ -50,6 +48,7 @@ class Game {
           player.dealDamage(this.chooseEnemy(player));
           authoriseAction = true;
           break;
+
         case "2":
           authoriseAction = true;
           console.log(`You use your special attack : ${player.getPowerName()}`);
@@ -69,9 +68,10 @@ class Game {
           } else {
             console.log(`${player.name} use ${player.getPowerName()}`);
             player.power();
+            break;
           }
-          break
         case "3":
+
           this.showEveryoneStats();
           console.log("1 : Attack");
           console.log(`2 : Use ${player.getPowerName()}`);
@@ -109,12 +109,15 @@ class Game {
 
     while (!start) {
       for (let i = 0; i < enemies.length; i++) {
-        const enemyChoosen = enemies[i];
-        if (enemyChoosen.index === selectedEnemy) {
+        let enemyChoosen = enemies[i];
+        console.log(enemyChoosen.index);
+        console.log(selectedEnemy);
+        if (enemyChoosen.index == selectedEnemy) {
           start = true;
           return enemyChoosen;
         }
       }
+      start = true;
     }
 
     if (!start) {

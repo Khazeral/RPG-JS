@@ -6,7 +6,6 @@ class Assassin extends Character {
     mana = 20,
     shield = 0,
     status = "playing",
-    shadowHit = false
   ) {
     super(name, hp, dmg, mana, shield, status);
     this.shadowHit = this.shadowHit;
